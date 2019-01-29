@@ -1,0 +1,33 @@
+html,
+body {
+  height: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+header {
+  border: 1px solid red;
+}
+
+main {
+  border: 5px solid magenta;
+  width: 48.5%;
+  height: 100%;
+  display: inline-block;
+}
+
+#card-area {
+  border: 5px solid blue;
+  width: 48.5%;
+  height: 100%;
+  float: right;
+  display: inline-block;
+}
+
+#arena {
+  border: 1px solid orange;
+}
+
+#results div {
+  border: 1px solid green;
+}

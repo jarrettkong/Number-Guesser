@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <header>
+    <h1><span>Number</span>Guesser</h1>
+    <p>Ultimate Challenger Edition</p>
+  </header>
+  <main> <!-- Maybe change element -->
+    <section id="range">
+      <h3>Set Range</h3>
+      <fieldset action="">
+        <label for="min-range">Min Range</label>
+        <input type="number" name="min-range" id="min-range">
+        <label for="max-range">Max Range</label>
+        <input type="number" name="max-range" id="max-range">
+        <button type="submit" id="update">Update</button>
+      </fieldset>
+    </section>
+    <section id="arena"> <!-- Should we call the whole section a form -->
+      <p>The Current Range is <span>X</span> to <span>Y</span></p>
+      <form action="">
+        <fieldset>
+          <legend>Challenger 1</legend>
+          Name:<input type="text" id="challenger-1-name">
+          <br>
+          Guess:<input type="text" id="challenger1-guess">
+          <br>
+        </fieldset>
+        <fieldset>
+          <legend>Challenger 2</legend>
+          Name:<input type="text" id="challenger-2-name">
+          <br>
+          Guess:<input type="text" id="challenger-2-guess">
+          <br>
+        </fieldset>
+        <button id="submit-guess">Submit Guess</button>
+        <button id="reset-game">Reset Game</button>
+        <button id="clear-game">Clear Game</button>
+      </form>
+    </section>
+    <section id="results">
+      <h3>Latest Score</h3>
+      <div>
+        <h4>Challenger 1 Name</h4>
+        <p class="current-guess">current guess</p>
+        <p id="challenger-1-result">97</p>
+        <p>too high / low</p>
+      </div>
+      <div>
+        <h4>Challenger 2 Name</h4>
+        <p class="current-guess">current guess</p>
+        <p id="challenger-2-result">3</p>
+        <p>too high / low</p>
+      </div>
+    </section>
+  </main>
+  <div id="card-area">
+
+  </div>
+</body>
+</html>
