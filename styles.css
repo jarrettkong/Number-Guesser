@@ -6,39 +6,219 @@
 
 html,
 body {
-  height: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
+  font-family: 'Open Sans';
+  border: 1px solid grey;
 }
 
 header {
-  border: 1px solid red;
+  border-bottom: 1px solid grey;
+  height: 150px;
+  justify-content: center;
+  background-color: #404041;
+  /* padding-top: 15px; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1,
+.challenger-result {
+  color: #dd1972;
+  text-transform: uppercase;
+  font-size: 65px;
+  font-weight: 800;
+  margin: 0;
+}
+
+h1 span {
+  font-weight: 300;
+}
+
+#tagline {
+  margin: -6px 0 0 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: white;
+  font-weight: 300;
 }
 
 main {
-  border: 5px solid magenta;
-  width: 48.5%;
+  border-right: 1px solid grey;
+  width: 50%;
   height: 100%;
   display: inline-block;
+  background-color: #f7f7f7;
+  padding: 0 20px;
 }
 
-#card-area {
-  border: 5px solid blue;
-  width: 48.5%;
-  height: 100%;
-  float: right;
-  display: inline-block;
+.box {
+  background-color: white;
+  border: 2px solid lightgrey;
+  width: 100%;
+  margin: 20px 0;
+}
+
+input {
+  height: 40px;
+  border: 2px solid lightgrey;
+  font-size: 20px;
+  font-weight: bold;
+  color: grey;
+  padding-left: 10px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #dd1972;
+}
+
+#range {
+  height: 145px;
+}
+
+h3 {
+  margin: 0;
+}
+
+label {
+  color: grey;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+button:disabled {
+  background-color: lightgrey;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin: 5px 15px;
+}
+
+.range-group {
+  flex: 3;
+  margin-right: 15px;
+}
+
+.form-align {
+  display: block;
+  width: 100%;
+}
+
+#update-button {
+  flex: 2;
 }
 
 #arena {
-  border: 1px solid orange;
+  height: 400px;
 }
 
-#results div {
-  border: 1px solid green;
+#arena p {
+  margin: 15px;
+  font-size: 18px;
+  color: #404041;
+}
+
+.arena-group:nth-child(1) {
+  flex: 2;
+  margin-right: 15px;
+}
+
+.arena-group:nth-child(2) {
+  flex: 1;
+}
+
+.challenger {
+  margin-bottom: 30px;
+}
+
+.btn {
+  flex: 1;
+}
+
+.btn:nth-child(2) {
+  margin: 0 10px;
+}
+
+h3,
+legend {
+  font-weight: bold;
+  font-size: 23px;
+  color: #404041;
+  padding: 0;
+  margin: 10px 0 0 15px;
+}
+
+#min-range-small,
+#max-range-small {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+button {
+  /* padding: 0 25px; */
+  height: 40px;
+  border-radius: 100px;
+  color: white;
+  background-color: darkgrey;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-style:
+}
+
+button:focus {
+  outline: none;
+}
+
+
+#results {
+  height: 250px;
+}
+
+.results-section {
+  text-align: center;
+  /* border: 1px solid red; */
+}
+
+.results-section p {
+  margin: 0;
+  color: grey;
+  font-size: 20px;
+}
+
+#challenger-1-result,
+#challenger-2-result {
+  font-size: 100px;
+  margin: -20px 0;
+  color: #dd1972;
+}
+
+h4 {
+  font-size: 20px;
+  color: #404041;
+  margin: 0;
+}
+
+#card-area {
+  border-left: 1px solid grey;
+  width: 50%;
+  height: 100%;
+  float: right;
+  display: inline-block;
 }
 
 .game-card {
   border: 1px solid red;
   margin: 10px;
 }
+
+/* .clearfix {
+  content: '';
+  display: table;
+  clear: both;
+} */

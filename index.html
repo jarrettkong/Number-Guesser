@@ -5,60 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <!-- 'Open Sans' Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
   <title>Document</title>
 </head>
 <body>
-
   <header>
-    <h1><span>Number</span>Guesser</h1>
-    <p>Ultimate Challenger Edition</p>
+    <h1>Number<span>Guesser</span></h1>
+    <p id="tagline">Ultimate Challenger Edition</p>
   </header>
-  <main> <!-- Maybe change element -->
-    <section id="range">
+  <main>
+    <section id="range" class="box">
       <h3>Set Range</h3>
-      <fieldset action="">
-        <label for="min-range">Min Range</label>
-        <input type="number" name="min-range" id="min-range">
-        <label for="max-range">Max Range</label>
-        <input type="number" name="max-range" id="max-range">
-        <button type="submit" id="update">Update</button>
-      </fieldset>
-    </section>
-    <section id="arena"> <!-- Should we call the whole section a form -->
-      <p>The Current Range is <span>X</span> to <span>Y</span></p>
-      <form action="">
-        <fieldset>
-          <legend>Challenger 1</legend>
-          Name:<input type="text" id="challenger-1-name">
-          <br>
-          Guess:<input type="text" id="challenger1-guess">
-          <br>
-        </fieldset>
-        <fieldset>
-          <legend>Challenger 2</legend>
-          Name:<input type="text" id="challenger-2-name">
-          <br>
-          Guess:<input type="text" id="challenger-2-guess">
-          <br>
-        </fieldset>
-        <button id="submit-guess">Submit Guess</button>
-        <button id="reset-game">Reset Game</button>
-        <button id="clear-game">Clear Game</button>
-      </form>
-    </section>
-    <section id="results">
-      <h3>Latest Score</h3>
-      <div>
-        <h4>Challenger 1 Name</h4>
-        <p class="current-guess">current guess</p>
-        <p id="challenger-1-result">97</p>
-        <p>too high / low</p>
+      <div class="wrapper">
+        <div class="range-group">
+          <label for="min-range" class="form-align">Min Range</label>
+          <input type="number" name="min-range" id="min-range" class="form-align">
+        </div>
+        <div class="range-group">
+          <label for="max-range" class="form-align">Max Range</label>
+          <input type="number" name="max-range" id="max-range" class="form-align">
+        </div>
+        <button id="update-button">Update</button>
       </div>
-      <div>
-        <h4>Challenger 2 Name</h4>
-        <p class="current-guess">current guess</p>
-        <p id="challenger-2-result">3</p>
-        <p>too high / low</p>
+    </section>
+    <section id="arena" class="box">
+      <p>The Current Range is <span id="min-range-small">X</span> to <span id="max-range-small">Y</span></p>
+      <article class="challenger">
+        <h3>Challenger 1</h3>
+        <div class="wrapper">
+          <div class="arena-group">
+            <label for="challenger-1-name" class="form-align">Name</label>
+            <input type="text" id="challenger-1-name" class="form-align" name="challenger-1-name">
+          </div>
+          <div class="arena-group">
+            <label for="challenger-1-guess" class="form-align">Guess</label>
+            <input type="number" id="challenger-1-guess" class="form-align" name="challenger-1-guess">
+          </div>
+        </div>
+      </article>
+      <article class="challenger">
+        <h3>Challenger 2</h3>
+        <div class="wrapper">
+          <div class="arena-group">
+            <label for="challenger-2-name" class="form-align">Name</label>
+            <input type="text" id="challenger-2-name" class="form-align" name="challenger-2-name">
+          </div>
+          <div class="arena-group">
+            <label for="challenger-2-guess" class="form-align">Guess</label>
+            <input type="number" id="challenger-2-guess" class="form-align" name="challenger-2-guess">
+          </div>
+        </div>
+      </article>
+      <div class="wrapper">
+        <button id="submit-guess"class="btn">Submit Guess</button>
+        <button id="reset-game" class="btn"disabled>Reset Game</button>
+        <button id="clear-game" class="btn"disabled>Clear Game</button>
+      </div>
+    </section>
+    <section id="results" class="box">
+      <h3>Latest Score</h3>
+      <div class="wrapper">
+        <div class="results-section">
+          <h4>Challenger 1 Name</h4>
+          <p class="current-guess">current guess</p>
+          <p id="challenger-1-result" class="challenger-result">97</p>
+          <p>too high / low</p>
+        </div>
+        <div class="results-section">
+          <h4>Challenger 2 Name</h4>
+          <p class="current-guess">current guess</p>
+          <p id="challenger-2-result" class="challenger-result">3</p>
+          <p>too high / low</p>
+        </div>
       </div>
     </section>
   </main>
@@ -73,8 +92,10 @@
         <li>num guesses</li>
         <li>time</li>
       </ul>
-      <button class="close-card">X</button>
+      <button class="close-card">x</button>
     </div>
   </div>
+  <!-- JavaScript tag -->
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
