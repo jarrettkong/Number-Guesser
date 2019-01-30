@@ -27,6 +27,10 @@ var challengerTwoGuessQuery = document.getElementById('challenger-2-guess');
 var names = document.querySelectorAll('h4');
 var scores = document.getElementsByClassName('challenger-result');
 
+var comparisonText = document.getElementsByClassName('comparison');
+
+var random;
+
 // Clear forms function
 function clear() {
   for(var i = 0; i < inputs.length; i++) { //inputs.length = 6;
@@ -61,9 +65,12 @@ updateButton.addEventListener("click", function(e) {
       minRangeSmall.innerText = minRange;
       maxRangeSmall.innerText = maxRange;
    }
+   // Assigns random number between minRange and maxRange to random
+   random = generateRandomNumber(minRange, maxRange);
+   console.log(random);
   });
 
-// 
+//
 submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   //covert input query to number data type
@@ -72,7 +79,7 @@ submitButton.addEventListener('click', function(e) {
 
   validateInput(challengerOneGuess, challengerOneGuessQuery);
   validateInput(challengerTwoGuess, challengerTwoGuessQuery);
-  
+
   //change name in score section
   names[0].innerText = challengerOneName.value;
   names[1].innerText = challengerTwoName.value;
@@ -80,6 +87,9 @@ submitButton.addEventListener('click', function(e) {
   //change guess in score seciton
   scores[0].innerText = challengerOneGuess;
   scores[1].innerText = challengerTwoGuess;
+
+  checkGuess(comparisonText[0], challengerOneGuess);
+  checkGuess(comparisonText[1], challengerTwoGuess);
 });
 
 // Checks if input is within the range
@@ -92,3 +102,18 @@ function validateInput(num, element) {
   }
 }
 
+// Generates random number between min and max
+function generateRandomNumber(min, max) {
+  var randNum = (Math.floor(Math.random() * max)) + min;
+  return randNum;
+}
+
+function checkGuess(player, num) {
+  if(num < random) {
+    player.innerText = "too low";
+  } else if (num > random) {
+    player.innerText = "too high";
+  } else {
+    player.innerText = "BOOM!";
+  }
+}
