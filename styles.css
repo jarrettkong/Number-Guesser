@@ -237,7 +237,7 @@ h4 {
 }
 
 #card-area {
-  border-left: 1px solid grey;
+  /* border-left: 1px solid grey; */
   width: 50%;
   height: 100%;
   float: right;
