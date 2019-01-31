@@ -7,6 +7,10 @@ var inputs = document.querySelectorAll("input");
 var arenaInputs = document.querySelectorAll('#arena input');
 
 // Range Inputs
+
+var minRange;
+var maxRange;
+
 var minRangeQuery = document.getElementById('min-range'); // Min range user input
 //var minRange = Number(minRangeQuery.value);
 var maxRangeQuery = document.getElementById('max-range'); // Max range user input
@@ -59,8 +63,8 @@ resetButton.addEventListener("click", function(e) {
 // Set Range
 updateButton.addEventListener("click", function(e) {
   e.preventDefault();
-  var minRange = Number(minRangeQuery.value);
-  var maxRange = Number(maxRangeQuery.value);
+  minRange = Number(minRangeQuery.value);
+  maxRange = Number(maxRangeQuery.value);
   // console.log(minRange, maxRange);
   if (minRange >= maxRange) {
     alert('Please make sure the minimum is less than the maximum.');
@@ -132,3 +136,15 @@ function addCard() {
   var clone = cardTemplate.content.cloneNode(true);
   cardArea.appendChild(clone);
 }
+
+function startGame() {
+  minRange = 1;
+  maxRange = 100;
+
+  minRangeSmall.innerText = minRange;
+  maxRangeSmall.innerText = maxRange;
+  
+  random = generateRandomNumber(minRange, maxRange);
+}
+
+startGame();
