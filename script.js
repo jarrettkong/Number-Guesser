@@ -99,7 +99,7 @@ submitButton.addEventListener('click', function(e) {
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
   addCard();
-})
+});
 
 // Checks if input is within the range
 function validateInput(num, element) {
