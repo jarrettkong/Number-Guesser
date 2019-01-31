@@ -44,8 +44,12 @@ h1 span {
   font-weight: 300;
 }
 
+.changing-this {
+  background-color: #d1d2d4;
+}
+
 main {
-  border-right: 1px solid grey;
+  border-right: 3px solid grey;
   width: 50%;
   height: 100%;
   display: inline-block;
@@ -214,11 +218,60 @@ h4 {
   height: 100%;
   float: right;
   display: inline-block;
+  padding: 20px 40px;
+
 }
 
 .game-card {
   border: 1px solid red;
-  margin: 10px;
+  text-align: center;
+  background-color: #ffffff
+  /*margin: 10px;*/
+}
+
+.game-card span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.game-card h5 {
+  font-size:42px;
+  margin: 0px;
+}
+
+.game-card h6 {
+  font-size: 32px;
+  margin: 0px;
+  font-weight: lighter;
+}
+.game-stat-container {
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.game-stats {
+  border: 1px solid red;
+  margin: 5px;
+  width: 33%;
+}
+
+.close-card-container {
+  text-align: right;
+  border: 1px solid red;
+  margin: 5px;
+  width: 33%;
+}
+
+.close-card {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+}
+
+.game-stats p {
+  margin: 0px;
 }
 
 /* .clearfix {
