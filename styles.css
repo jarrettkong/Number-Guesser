@@ -95,14 +95,14 @@ button:disabled {
   margin: 5px 15px;
 }
 
-.range-group {
-  flex: 3;
-  margin-right: 15px;
-}
-
 .form-align {
   display: block;
   width: 100%;
+}
+
+.range-group {
+  flex: 3;
+  margin-right: 15px;
 }
 
 #update-button {
