@@ -29,6 +29,9 @@ var scores = document.getElementsByClassName('challenger-result');
 
 var comparisonText = document.getElementsByClassName('comparison');
 
+var cardArea = document.getElementById("card-area");
+var cardTemplate = document.getElementById("game-card-template");
+
 var random;
 
 // Clear forms function
@@ -93,6 +96,11 @@ submitButton.addEventListener('click', function(e) {
   checkGuess(comparisonText[1], challengerTwoGuess);
 });
 
+resetButton.addEventListener("click", function(e) {
+  e.preventDefault();
+  addCard();
+})
+
 // Checks if input is within the range
 function validateInput(num, element) {
   var minRange = Number(minRangeQuery.value);
@@ -105,7 +113,6 @@ function validateInput(num, element) {
 
 // Generates random number between min and max
 function generateRandomNumber(min, max) {
-  // var randNum = (Math.floor(Math.random() * max)) + min;
   var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
   return randNum;
 }
@@ -118,4 +125,10 @@ function checkGuess(player, num) {
   } else {
     player.innerText = "BOOM!";
   }
+}
+
+function addCard() {
+  // Recursively clones the HTML in the <template>
+  var clone = cardTemplate.content.cloneNode(true);
+  cardArea.appendChild(clone);
 }
