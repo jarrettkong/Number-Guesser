@@ -23,11 +23,11 @@
       <div class="wrapper">
         <div class="range-group">
           <label for="min-range" class="form-align">Min Range</label>
-          <input type="number" name="min-range" id="min-range" class="form-align">
+          <input type="number" name="min-range" value="1" id="min-range" class="form-align">
         </div>
         <div class="range-group">
           <label for="max-range" class="form-align">Max Range</label>
-          <input type="number" name="max-range" id="max-range" class="form-align">
+          <input type="number" name="max-range" value="100" id="max-range" class="form-align">
         </div>
           <button id="update-button">Update</button>
         </div>
@@ -72,15 +72,15 @@
           <div class="results-section">
             <h4>Challenger 1 Name</h4>
             <p class="current-guess">current guess</p>
-            <p id="challenger-1-result" class="challenger-result">97</p>
-            <p class="comparison">too high / low</p>
+            <p id="challenger-1-result" class="challenger-result">--</p>
+            <p class="comparison">--</p>
           </div>
           <hr class="vertical-line">
           <div class="results-section">
             <h4>Challenger 2 Name</h4>
             <p class="current-guess">current guess</p>
-            <p id="challenger-2-result" class="challenger-result">3</p>
-            <p class="comparison">too high / low</p>
+            <p id="challenger-2-result" class="challenger-result">-</p>
+            <p class="comparison">--</p>
           </div>
         </div>
       </section>
@@ -97,14 +97,16 @@
       <h6>Winner</h6>
       <hr>
       <div class="game-stat-container">
-        <div class="game-stats">
-          <p>3 Guesses</p>
+        <div class="game-stats stats-guess">
+          <p><strong>32</strong> Guesses</p>
         </div>
-        <div class="game-stats">
-          <p>10 Seconds</p>
+        <div class="game-stats stats-timer">
+          <p><strong>10</strong> Seconds</p>
         </div>
-        <div class="close-card-container">
-          <div class="close-card">&times;</div>
+        <div class="close-card-container"> 
+          <div class="close-card">
+            &times;
+          </div>
         </div>
       </div>
     </div>

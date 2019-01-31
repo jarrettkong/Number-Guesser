@@ -187,7 +187,7 @@ button {
   height: 40px;
   border-radius: 100px;
   color: white;
-  background-color: darkgrey;
+  background-color: #6e6e6e;
   font-size: 18px;
   font-weight: 500;
   text-transform: uppercase;
@@ -239,33 +239,45 @@ h4 {
 #card-area {
   width: 50%;
   height: 100%;
+  max-height: 855px;
   float: right;
   display: inline-block;
   padding: 20px 40px;
-
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
+hr {
+  width: 95%;
+}
 .game-card {
-  border: 2px solid #7f7f7f;
+  border: 2px solid #6e6e6e;
   text-align: center;
   background-color: #ffffff;
-  margin: 10px 0px;
+  margin: 0 0 10px 0;
+  color: #6e6e6e;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
 }
 
 .game-card span {
   font-weight: bold;
   font-size: 18px;
+  color: #6e6e6e;
 }
 
 .game-card h5 {
   font-size:42px;
-  margin: 0px;
+  margin: 0 0 10px 0;
+  color: #6e6e6e;
+  line-height: 36px;
 }
 
 .game-card h6 {
   font-size: 32px;
   margin: 0px;
   font-weight: lighter;
+  line-height: 26px;
+  letter-spacing: 3px;
 }
 .game-stat-container {
   padding: 5px;
@@ -274,29 +286,40 @@ h4 {
   align-items: center;
 }
 .game-stats {
-  /*border: 1px solid red;*/
   margin: 5px;
   width: 33%;
 }
 
+.stats-guess {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.stats-timer {
+  text-align: center;
+}
+
 .close-card-container {
-  margin: 5px;
   width: 33%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 10px;
+  /*border: 1px solid red;*/
 }
 
 .close-card {
-  width: 30px;
-  height: 30px;
   text-align: center;
-  border-radius: 100%;
-  font-size: 28px;
+  border-radius: 25px;
   color: #ffffff;
-  background: #7f7f7f;
-  font-weight: lighter;
   padding: 0px;
+  border: none;
+  background-color: #6e6e6e;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 29px;
+  font-weight: 300;
 }
 
 .game-stats p {
