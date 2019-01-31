@@ -58,6 +58,7 @@ updateButton.addEventListener("click", function(e) {
   e.preventDefault();
   var minRange = Number(minRangeQuery.value);
   var maxRange = Number(maxRangeQuery.value);
+  // console.log(minRange, maxRange);
   if (minRange >= maxRange) {
     alert('Please make sure the minimum is less than the maximum.');
     clear(); // clears all fields, not just range. Change later?
@@ -104,7 +105,8 @@ function validateInput(num, element) {
 
 // Generates random number between min and max
 function generateRandomNumber(min, max) {
-  var randNum = (Math.floor(Math.random() * max)) + min;
+  // var randNum = (Math.floor(Math.random() * max)) + min;
+  var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
   return randNum;
 }
 
