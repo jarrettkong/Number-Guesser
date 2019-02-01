@@ -29,7 +29,7 @@ h1,
   text-transform: uppercase;
   font-size: 65px;
   font-weight: 800;
-  margin: 0;
+  margin: -15px 0 -5px 0;
 }
 
 h1 span {
@@ -116,6 +116,11 @@ button:disabled {
 .range-group {
   flex: 3;
   margin-right: 15px;
+  position: relative;
+}
+
+.arena-group {
+  position: relative;
 }
 
 #update-button {
@@ -126,7 +131,7 @@ button:disabled {
   height: 400px;
 }
 
-#arena p {
+#arena p:first-child {
   margin: 15px;
   font-size: 18px;
   color: #404041;
@@ -311,6 +316,25 @@ h4 {
 .game-stats p {
   margin: 0px;
 }
+
+.error {
+  color: #dd1972;
+  margin: 0;
+  position: absolute;
+}
+
+.error img {
+  height: 13px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.empty {
+  border: 2px solid #dd1972;
+}
+
 
 /* .clearfix {
   content: '';
