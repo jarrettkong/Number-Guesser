@@ -58,7 +58,6 @@ updateButton.addEventListener("click", function(e) {
   e.preventDefault();
   minRange = Number(minRangeQuery.value);
   maxRange = Number(maxRangeQuery.value);
-  // console.log(minRange, maxRange);
   if (minRange >= maxRange) {
     alert('Please make sure the minimum is less than the maximum.');
     clear(); // clears all fields, not just range. Change later?
@@ -75,8 +74,8 @@ updateButton.addEventListener("click", function(e) {
 submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   //covert input query to number data type
-  var challengerOneGuess = Number(challengerOneGuessQuery.value);
-  var challengerTwoGuess = Number(challengerTwoGuessQuery.value);
+  var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
+  var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
 
   validateInput(challengerOneGuess, challengerOneGuessQuery);
   validateInput(challengerTwoGuess, challengerTwoGuessQuery);
@@ -89,15 +88,16 @@ submitButton.addEventListener('click', function(e) {
   scores[0].innerText = challengerOneGuess;
   scores[1].innerText = challengerTwoGuess;
 
-  checkGuess(text[0], Number(challengerOneGuessQuery.value));
-  checkGuess(text[1], Number(challengerTwoGuessQuery.value));
+  checkGuess(text[0], challengerOneGuess);
+  checkGuess(text[1], challengerTwoGuess);
 
-  getWinner();
+  getWinner(challengerOneGuess, challengerTwoGuess);
 
 });
 
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
+  reset();
 });
 
 // Clear forms function
@@ -110,7 +110,7 @@ function clear() {
 }
 
 function reset() {
-
+  startGame();
 }
 
 // Checks if input is within the range
@@ -149,7 +149,6 @@ function checkGuess(text, guess) {
     text.innerText = "too high";
   } else {
     text.innerText = "BOOM!";
-    getWinner(Number(challengerOneGuessQuery.value), Number(challengerTwoGuessQuery.value));
   }
 }
 
@@ -168,12 +167,11 @@ function updateCard(clone, winner) {
 }
 
 function startGame() {
+  cardArea.innerHTML = "";
   minRange = 1;
   maxRange = 100;
-
-  minRangeSmall.innerText = minRange;
-  maxRangeSmall.innerText = maxRange;
-
+  minRangeSmall.innerText = 1;
+  maxRangeSmall.innerText = 100;
   random = generateRandomNumber(minRange, maxRange);
 }
 
