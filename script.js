@@ -44,21 +44,11 @@ clearButton.addEventListener("click", function(e) {
   clear();
 });
 
-// Reset button functionality
-resetButton.addEventListener("click", function(e) {
-  e.preventDefault();
-  clear();
-  // Clear cards
-  // Reset range to 1-100
-
-});
-
 // Set Range
 updateButton.addEventListener("click", function(e) {
   e.preventDefault();
   minRange = Number(minRangeQuery.value);
   maxRange = Number(maxRangeQuery.value);
-  // console.log(minRange, maxRange);
   if (minRange >= maxRange) {
     alert('Please make sure the minimum is less than the maximum.');
     clear(); // clears all fields, not just range. Change later?
@@ -75,8 +65,8 @@ updateButton.addEventListener("click", function(e) {
 submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   //covert input query to number data type
-  var challengerOneGuess = Number(challengerOneGuessQuery.value);
-  var challengerTwoGuess = Number(challengerTwoGuessQuery.value);
+  var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
+  var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
 
   validateInput(challengerOneGuess, challengerOneGuessQuery);
   validateInput(challengerTwoGuess, challengerTwoGuessQuery);
@@ -89,15 +79,21 @@ submitButton.addEventListener('click', function(e) {
   scores[0].innerText = challengerOneGuess;
   scores[1].innerText = challengerTwoGuess;
 
-  checkGuess(text[0], Number(challengerOneGuessQuery.value));
-  checkGuess(text[1], Number(challengerTwoGuessQuery.value));
+  checkGuess(text[0], challengerOneGuess);
+  checkGuess(text[1], challengerTwoGuess);
 
-  getWinner();
+  getWinner(challengerOneGuess, challengerTwoGuess);
 
 });
 
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
+  for(var i = 0; i < inputs.length; i++) {
+    inputs[i].value = "";
+  }
+  minRangeQuery.value = 1;
+  maxRangeQuery.value = 100;
+  reset();
 });
 
 // Clear forms function
@@ -110,7 +106,12 @@ function clear() {
 }
 
 function reset() {
-
+  minRangeSmall.innerText = 1;
+  maxRangeSmall.innerText = 100;
+  cardArea.innerHTML = "";
+  minRange = 1;
+  maxRange = 100;
+  random = generateRandomNumber(minRange, maxRange);
 }
 
 // Checks if input is within the range
@@ -149,18 +150,11 @@ function checkGuess(text, guess) {
     text.innerText = "too high";
   } else {
     text.innerText = "BOOM!";
-    getWinner(Number(challengerOneGuessQuery.value), Number(challengerTwoGuessQuery.value));
   }
 }
 
 function addCard(winner) {
-  // Recursively clones the HTML in the <template>
   var clone = cardTemplate.content.cloneNode(true);
-  updateCard(clone, winner);
-  // cardArea.insertBefore(clone, cardArea.childNodes[0]);
-}
-
-function updateCard(clone, winner) {
   clone.querySelectorAll("span")[0].innerText = challengerOneName.value;
   clone.querySelectorAll("span")[1].innerText = challengerTwoName.value;
   clone.querySelector("h5").innerText = winner;
@@ -168,13 +162,7 @@ function updateCard(clone, winner) {
 }
 
 function startGame() {
-  minRange = 1;
-  maxRange = 100;
-
-  minRangeSmall.innerText = minRange;
-  maxRangeSmall.innerText = maxRange;
-
-  random = generateRandomNumber(minRange, maxRange);
+  reset();
 }
 
 startGame();
