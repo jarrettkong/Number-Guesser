@@ -52,14 +52,15 @@ submitButton.addEventListener('click', function(e) {
   var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
   validateInput(challengerOneGuess, challengerOneGuessQuery);
   validateInput(challengerTwoGuess, challengerTwoGuessQuery);
-  checkEmpty();
-  names[0].innerText = challengerOneName.value;
-  names[1].innerText = challengerTwoName.value;
-  scores[0].innerText = challengerOneGuess;
-  scores[1].innerText = challengerTwoGuess;
-  checkGuess(text[0], challengerOneGuess);
-  checkGuess(text[1], challengerTwoGuess);
-  getWinner(challengerOneGuess, challengerTwoGuess);
+  if(!checkEmpty()) {
+    names[0].innerText = challengerOneName.value;
+    names[1].innerText = challengerTwoName.value;
+    scores[0].innerText = challengerOneGuess;
+    scores[1].innerText = challengerTwoGuess;
+    checkGuess(text[0], challengerOneGuess);
+    checkGuess(text[1], challengerTwoGuess);
+    getWinner(challengerOneGuess, challengerTwoGuess);
+  }
 });
 
 resetButton.addEventListener("click", function(e) {
@@ -72,11 +73,10 @@ resetButton.addEventListener("click", function(e) {
   reset();
 });
 
-// Clear forms function
 function clear() {
   inputs[0] = minRange;
   inputs[1] = maxRange;
-  for(var i = 2; i < inputs.length; i++) { //inputs.length = 6;
+  for(var i = 2; i < inputs.length; i++) {
     inputs[i].value = "";
   }
 }
@@ -90,7 +90,6 @@ function reset() {
   random = generateRandomNumber(minRange, maxRange);
 }
 
-// Checks if input is within the range
 function validateInput(num, element) {
   var minRange = parseInt(minRangeQuery.value);
   var maxRange = parseInt(maxRangeQuery.value);
@@ -100,7 +99,6 @@ function validateInput(num, element) {
   }
 }
 
-// Generates random number between min and max
 function generateRandomNumber(min, max) {
   var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
   return randNum;
@@ -138,15 +136,18 @@ function addCard(winner) {
 }
 
 function checkEmpty() {
+  var empty = false;
   for(var i = 0; i < inputs.length; i++) {
     if(inputs[i].value == "") {
       inputs[i].classList.add("empty");
       errors[i].classList.remove("hidden");
+      empty = true;
     } else {
       inputs[i].classList.remove("empty");
       errors[i].classList.add("hidden");
     }
   }
+  return empty;
 }
 
 function startGame() {
