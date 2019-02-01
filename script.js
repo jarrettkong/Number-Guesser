@@ -31,19 +31,12 @@ var challengerTwoGuessQuery = document.getElementById('challenger-2-guess');
 var names = document.querySelectorAll('h4');
 var scores = document.getElementsByClassName('challenger-result');
 
-var comparisonText = document.getElementsByClassName('comparison');
+var text = document.getElementsByClassName('comparison');
 
 var cardArea = document.getElementById("card-area");
 var cardTemplate = document.getElementById("game-card-template");
 
 var random;
-
-// Clear forms function
-function clear() {
-  for(var i = 0; i < inputs.length; i++) { //inputs.length = 6;
-    inputs[i].value = "";
-  }
-};
 
 // Clear button functionality
 clearButton.addEventListener("click", function(e) {
@@ -96,14 +89,29 @@ submitButton.addEventListener('click', function(e) {
   scores[0].innerText = challengerOneGuess;
   scores[1].innerText = challengerTwoGuess;
 
-  checkGuess(comparisonText[0], challengerOneGuess);
-  checkGuess(comparisonText[1], challengerTwoGuess);
+  checkGuess(text[0], Number(challengerOneGuessQuery.value));
+  checkGuess(text[1], Number(challengerTwoGuessQuery.value));
+
+  getWinner();
+
 });
 
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
-  addCard();
 });
+
+// Clear forms function
+function clear() {
+  inputs[0] = minRange;
+  inputs[1] = maxRange;
+  for(var i = 2; i < inputs.length; i++) { //inputs.length = 6;
+    inputs[i].value = "";
+  }
+}
+
+function reset() {
+
+}
 
 // Checks if input is within the range
 function validateInput(num, element) {
@@ -121,19 +129,41 @@ function generateRandomNumber(min, max) {
   return randNum;
 }
 
-function checkGuess(player, num) {
-  if(num < random) {
-    player.innerText = "too low";
-  } else if (num > random) {
-    player.innerText = "too high";
-  } else {
-    player.innerText = "BOOM!";
+function getWinner(guess1, guess2) {
+  var winner;
+  if (guess1 === random && guess2 === random) {
+    // Draw
+  } else if (guess1 === random && guess2 !== random) {
+    winner = challengerOneName.value;
+    addCard(winner);
+  } else if (guess2 === random && guess1 !== random) {
+    winner = challengerTwoName.value;
+    addCard(winner);
   }
 }
 
-function addCard() {
+function checkGuess(text, guess) {
+  if(guess < random) {
+    text.innerText = "too low";
+  } else if (guess > random) {
+    text.innerText = "too high";
+  } else {
+    text.innerText = "BOOM!";
+    getWinner(Number(challengerOneGuessQuery.value), Number(challengerTwoGuessQuery.value));
+  }
+}
+
+function addCard(winner) {
   // Recursively clones the HTML in the <template>
   var clone = cardTemplate.content.cloneNode(true);
+  updateCard(clone, winner);
+  // cardArea.insertBefore(clone, cardArea.childNodes[0]);
+}
+
+function updateCard(clone, winner) {
+  clone.querySelectorAll("span")[0].innerText = challengerOneName.value;
+  clone.querySelectorAll("span")[1].innerText = challengerTwoName.value;
+  clone.querySelector("h5").innerText = winner;
   cardArea.appendChild(clone);
 }
 
@@ -143,7 +173,7 @@ function startGame() {
 
   minRangeSmall.innerText = minRange;
   maxRangeSmall.innerText = maxRange;
-  
+
   random = generateRandomNumber(minRange, maxRange);
 }
 
