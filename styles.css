@@ -9,11 +9,11 @@ body {
   max-width: 1300px;
   margin: auto;
   font-family: 'Open Sans';
-  border: 1px solid grey;
+  border: 1px solid #7f7f7f;
 }
 
 header {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #7f7f7f;
   height: 150px;
   justify-content: center;
   background-color: #404041;
@@ -58,7 +58,7 @@ h1 span {
 }
 
 main {
-  border-right: 3px solid grey;
+  border-right: 3px solid #7f7f7f;
   width: 50%;
   height: 100%;
   display: inline-block;
@@ -68,17 +68,17 @@ main {
 
 .box {
   background-color: white;
-  border: 2px solid lightgrey;
+  border: 2px solid #d0d2d3;
   width: 100%;
   margin: 20px 0;
 }
 
 input {
   height: 40px;
-  border: 2px solid lightgrey;
+  border: 2px solid #d0d2d3;
   font-size: 20px;
   font-weight: bold;
-  color: grey;
+  color: #7f7f7f;
   padding-left: 10px;
 }
 
@@ -92,13 +92,13 @@ input:focus {
 }
 
 label {
-  color: grey;
+  color: #7f7f7f;
   font-size: 20px;
   margin-bottom: 3px;
 }
 
 button:disabled {
-  background-color: lightgrey;
+  background-color: #d0d2d3;
 }
 
 .wrapper {
@@ -195,7 +195,7 @@ button:focus {
 
 .results-section p {
   margin: 0;
-  color: grey;
+  color: #7f7f7f;
   font-size: 20px;
 }
 
@@ -216,7 +216,7 @@ h4 {
   height: 220px;
   display: inline;
   width: 2px;
-  background-color: lightgrey;
+  background-color: #d0d2d3;
   border-style: none;
   position: absolute;
 }
@@ -236,7 +236,7 @@ h4 {
   width: 95%;
   border-style: none;
   height: 2px;
-  background-color: gray;
+  background-color: #7f7f7f;
 }
 
 .game-card {
