@@ -44,15 +44,6 @@ clearButton.addEventListener("click", function(e) {
   clear();
 });
 
-// Reset button functionality
-resetButton.addEventListener("click", function(e) {
-  e.preventDefault();
-  clear();
-  // Clear cards
-  // Reset range to 1-100
-
-});
-
 // Set Range
 updateButton.addEventListener("click", function(e) {
   e.preventDefault();
@@ -97,6 +88,11 @@ submitButton.addEventListener('click', function(e) {
 
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
+  for(var i = 0; i < inputs.length; i++) {
+    inputs[i].value = "";
+  }
+  minRangeQuery.value = 1;
+  maxRangeQuery.value = 100;
   reset();
 });
 
@@ -110,7 +106,12 @@ function clear() {
 }
 
 function reset() {
-  startGame();
+  minRangeSmall.innerText = 1;
+  maxRangeSmall.innerText = 100;
+  cardArea.innerHTML = "";
+  minRange = 1;
+  maxRange = 100;
+  random = generateRandomNumber(minRange, maxRange);
 }
 
 // Checks if input is within the range
@@ -153,13 +154,7 @@ function checkGuess(text, guess) {
 }
 
 function addCard(winner) {
-  // Recursively clones the HTML in the <template>
   var clone = cardTemplate.content.cloneNode(true);
-  updateCard(clone, winner);
-  // cardArea.insertBefore(clone, cardArea.childNodes[0]);
-}
-
-function updateCard(clone, winner) {
   clone.querySelectorAll("span")[0].innerText = challengerOneName.value;
   clone.querySelectorAll("span")[1].innerText = challengerTwoName.value;
   clone.querySelector("h5").innerText = winner;
@@ -167,12 +162,7 @@ function updateCard(clone, winner) {
 }
 
 function startGame() {
-  cardArea.innerHTML = "";
-  minRange = 1;
-  maxRange = 100;
-  minRangeSmall.innerText = 1;
-  maxRangeSmall.innerText = 100;
-  random = generateRandomNumber(minRange, maxRange);
+  reset();
 }
 
 startGame();
