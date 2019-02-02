@@ -87,12 +87,29 @@ function clear() {
 }
 
 function reset() {
-  minRangeSmall.innerText = 1;
-  maxRangeSmall.innerText = 100;
   cardArea.innerHTML = "";
+  newGame();
+  resetResults();
+  random = generateRandomNumber(minRange, maxRange);
+}
+
+function newGame() {
+  for(i = 2; i < inputs.length; i++) {
+    inputs[i].value = "";
+  }
   minRange = 1;
   maxRange = 100;
+  minRangeSmall.innerText = minRange;
+  maxRangeSmall.innerText = maxRange;
   random = generateRandomNumber(minRange, maxRange);
+}
+
+function resetResults() {
+  for(var i = 0; i < 2; i++) {
+    names[i].innerText = "-";
+    scores[i].innerText = "--";
+    text[i].innerText = "-";
+  }
 }
 
 function validateGuess(num, element) {
@@ -112,12 +129,15 @@ function getWinner(guess1, guess2, count) {
   var winner;
   if (guess1 === random && guess2 === random) {
     addDraw(count);
+    newGame();
   } else if (guess1 === random && guess2 !== random) {
     winner = challengerOneName.value;
     addCard(winner, count);
+    newGame();
   } else if (guess2 === random && guess1 !== random) {
     winner = challengerTwoName.value;
     addCard(winner, count);
+    newGame();
   }
 }
 
@@ -179,7 +199,7 @@ function checkEmpty(start, end) {
 }
 
 function startGame() {
-  reset();
+  newGame();
 }
 
 startGame();
