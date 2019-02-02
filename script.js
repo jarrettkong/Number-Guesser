@@ -37,7 +37,7 @@ updateButton.addEventListener("click", function(e) {
   e.preventDefault();
   minRange = parseInt(minRangeQuery.value);
   maxRange = parseInt(maxRangeQuery.value);
-  if(!checkEmpty(0,1)) {
+  if(!checkEmpty(0,1) && validateRange(minRange, maxRange)) {
     minRangeSmall.innerText = minRange;
     maxRangeSmall.innerText = maxRange;
     random = generateRandomNumber(minRange, maxRange);
@@ -49,8 +49,8 @@ submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
   var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
-    validateInput(challengerOneGuess, challengerOneGuessQuery);
-    validateInput(challengerTwoGuess, challengerTwoGuessQuery);
+    validateGuess(challengerOneGuess, challengerOneGuessQuery);
+    validateGuess(challengerTwoGuess, challengerTwoGuessQuery);
   if(!checkEmpty(2,5)) {
     count += 2;
     updateResults(challengerOneGuess, challengerTwoGuess);
@@ -94,11 +94,10 @@ function reset() {
   random = generateRandomNumber(minRange, maxRange);
 }
 
-function validateInput(num, element) {
+function validateGuess(num, element) {
   var minRange = parseInt(minRangeQuery.value);
   var maxRange = parseInt(maxRangeQuery.value);
   if(num < minRange || num > maxRange) {
-    // alert("Please enter a number within the correct range");
     element.value = "";
   }
 }
@@ -141,10 +140,17 @@ function addCard(winner, count) {
 }
 
 function validateRange(min, max) {
-  if(min > max) {
+  var valid = false;
+  if(min >= max) {
     minRangeQuery.value = "";
-    maxRangeQuery.value = "";
+    errors[0].classList.remove('hidden');
+    minRangeQuery.classList.add('empty');
+  } else {
+    errors[0].classList.add('hidden');
+    minRangeQuery.classList.remove('empty');
+    valid = true;
   }
+  return valid;
 }
 
 function checkEmpty(start, end) {
