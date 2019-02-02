@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Nomralize CSS -->
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <!-- Main CSS File -->
   <link rel="stylesheet" type="text/css" href="styles.css">
   <!-- 'Open Sans' Google font -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -66,7 +69,7 @@
             </div>
           </div>
         </article>
-        <div class="wrapper">
+        <div class="wrapper" id="button-container">
           <button id="submit-guess"class="btn">Submit Guess</button>
           <button id="reset-game" class="btn">Reset Game</button>
           <button id="clear-game" class="btn">Clear Game</button>
@@ -79,14 +82,14 @@
             <h4>Challenger 1 Name</h4>
             <p class="current-guess">current guess</p>
             <p id="challenger-1-result" class="challenger-result">--</p>
-            <p class="comparison">--</p>
+            <p class="comparison">-</p>
           </div>
           <hr class="vertical-line">
           <div class="results-section">
             <h4>Challenger 2 Name</h4>
             <p class="current-guess">current guess</p>
             <p id="challenger-2-result" class="challenger-result">--</p>
-            <p class="comparison">--</p>
+            <p class="comparison">-</p>
           </div>
         </div>
       </section>
@@ -96,10 +99,10 @@
   </section>
   <!-- Template -->
   <template id="game-card-template">
-    <div class="game-card">
-      <p><span>Challenger 1 Name</span> vs <span>Challenger 2 Name</span></p>
+    <section class="game-card">
+      <p><span id="game-card-c1">Challenger 1 Name</span> vs <span id="game-card-c2">Challenger 2 Name</span></p>
       <hr>
-      <h5>Winner Name</h5>
+      <p class="winner">Winner Name</p>
       <h6>Winner</h6>
       <hr>
       <div class="game-stat-container">
@@ -115,7 +118,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </template>
   <!-- JavaScript tag -->
   <script type="text/javascript" src="script.js"></script>

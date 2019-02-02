@@ -129,9 +129,9 @@ function checkGuess(text, guess) {
 
 function addCard(winner) {
   var clone = cardTemplate.content.cloneNode(true);
-  clone.querySelectorAll("span")[0].innerText = challengerOneName.value;
-  clone.querySelectorAll("span")[1].innerText = challengerTwoName.value;
-  clone.querySelector("h5").innerText = winner;
+  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
+  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
+  clone.querySelector(".winner").innerText = winner;
   cardArea.appendChild(clone);
 }
 

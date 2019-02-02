@@ -29,7 +29,11 @@ h1,
   text-transform: uppercase;
   font-size: 65px;
   font-weight: 800;
-  margin: -15px 0 -5px 0;
+  margin: 0;
+}
+
+.challenger-result {
+  padding: 15px 0;
 }
 
 h1 span {
@@ -106,6 +110,7 @@ button:disabled {
   justify-content: space-around;
   align-items: flex-end;
   margin: 5px 15px;
+  position: relative;
 }
 
 .form-align {
@@ -132,7 +137,7 @@ button:disabled {
 }
 
 #arena p:first-child {
-  margin: 15px;
+  margin: 15px 15px 25px 15px;
   font-size: 18px;
   color: #404041;
 }
@@ -163,13 +168,17 @@ h3 {
   font-size: 23px;
   color: #404041;
   padding: 0;
-  margin: 10px 0 0 15px;
+  margin: 10px 0 10px 15px;
 }
 
 #min-range-small,
 #max-range-small {
   font-weight: bold;
   text-decoration: underline;
+}
+
+#button-container {
+  padding-top: 5px;
 }
 
 button {
@@ -214,7 +223,7 @@ button:focus {
 h4 {
   font-size: 20px;
   color: #404041;
-  margin: 0;
+  margin: 0 0 5px 0;
 }
 
 .vertical-line {
@@ -224,6 +233,7 @@ h4 {
   background-color: #d0d2d3;
   border-style: none;
   position: absolute;
+  bottom: -15px;
 }
 
 #card-area {
@@ -241,16 +251,29 @@ h4 {
   width: 95%;
   border-style: none;
   height: 2px;
-  background-color: #7f7f7f;
+  background-color: lightgrey;
+}
+
+.game-card hr:nth-child(even) {
+  margin-bottom: 25px;
+}
+
+.game-card hr:nth-child(odd) {
+  margin-top: 25px;
 }
 
 .game-card {
-  border: 2px solid #6e6e6e;
+  border: 2px solid lightgrey;
   text-align: center;
   background-color: #ffffff;
   margin-bottom: 10px;
-  color: #6e6e6e;
+  color: grey;
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+  height: 235px;
+}
+
+.game-card p {
+  margin: 15px 0;
 }
 
 .game-card span {
@@ -259,11 +282,13 @@ h4 {
   color: #6e6e6e;
 }
 
-.game-card h5 {
+.winner {
   font-size:42px;
   margin:0 0 10px 0;
   color: #6e6e6e;
   line-height: 36px;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
 .game-card h6 {
@@ -272,16 +297,19 @@ h4 {
   font-weight: lighter;
   line-height: 26px;
   letter-spacing: 3px;
+  text-transform: uppercase;
 }
 .game-stat-container {
   padding: 5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  text-transform: uppercase;
 }
+
 .game-stats {
   margin: 5px;
-  width: 33%;
+  width: 33.33%;
 }
 
 .stats-guess {
@@ -319,7 +347,7 @@ h4 {
 
 .error {
   color: #dd1972;
-  margin: 0;
+  margin: 3px 0 0 0;
   position: absolute;
 }
 
