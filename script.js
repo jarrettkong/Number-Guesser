@@ -19,10 +19,13 @@ var scores = document.getElementsByClassName('challenger-result');
 var text = document.getElementsByClassName('comparison');
 var cardArea = document.getElementById("card-area");
 var cardTemplate = document.getElementById("game-card-template");
+var drawTemplate = document.getElementById("draw-template");
 
 var minRange;
 var maxRange;
 var random;
+var count = 0;
+var timer;
 
 // Event Listeners
 
@@ -35,32 +38,35 @@ updateButton.addEventListener("click", function(e) {
   e.preventDefault();
   minRange = parseInt(minRangeQuery.value);
   maxRange = parseInt(maxRangeQuery.value);
-  if (minRange >= maxRange) {
-    minRangeQuery.value = "";
-    maxRangeQuery.value = "";
-   } else {
-      minRangeSmall.innerText = minRange;
-      maxRangeSmall.innerText = maxRange;
-   }
-   random = generateRandomNumber(minRange, maxRange);
-   console.log(random);
-  });
+  if(!checkEmpty(0,1) && validateRange(minRange, maxRange)) {
+    minRangeSmall.innerText = minRange;
+    maxRangeSmall.innerText = maxRange;
+    random = generateRandomNumber(minRange, maxRange);
+    console.log(random);
+  }
+});
 
 submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
   var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
-  validateInput(challengerOneGuess, challengerOneGuessQuery);
-  validateInput(challengerTwoGuess, challengerTwoGuessQuery);
-  checkEmpty();
+    validateGuess(challengerOneGuess, challengerOneGuessQuery);
+    validateGuess(challengerTwoGuess, challengerTwoGuessQuery);
+  if(!checkEmpty(2,5)) {
+    count += 2;
+    updateResults(challengerOneGuess, challengerTwoGuess);
+    getWinner(challengerOneGuess, challengerTwoGuess, count);
+  }
+});
+
+function updateResults(guess1, guess2) {
   names[0].innerText = challengerOneName.value;
   names[1].innerText = challengerTwoName.value;
-  scores[0].innerText = challengerOneGuess;
-  scores[1].innerText = challengerTwoGuess;
-  checkGuess(text[0], challengerOneGuess);
-  checkGuess(text[1], challengerTwoGuess);
-  getWinner(challengerOneGuess, challengerTwoGuess);
-});
+  scores[0].innerText = guess1;
+  scores[1].innerText = guess2;
+  checkGuess(text[0], guess1);
+  checkGuess(text[1], guess2);
+}
 
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
@@ -72,11 +78,10 @@ resetButton.addEventListener("click", function(e) {
   reset();
 });
 
-// Clear forms function
 function clear() {
   inputs[0] = minRange;
   inputs[1] = maxRange;
-  for(var i = 2; i < inputs.length; i++) { //inputs.length = 6;
+  for(var i = 2; i < inputs.length; i++) {
     inputs[i].value = "";
   }
 }
@@ -90,32 +95,29 @@ function reset() {
   random = generateRandomNumber(minRange, maxRange);
 }
 
-// Checks if input is within the range
-function validateInput(num, element) {
+function validateGuess(num, element) {
   var minRange = parseInt(minRangeQuery.value);
   var maxRange = parseInt(maxRangeQuery.value);
   if(num < minRange || num > maxRange) {
-    alert("Please enter a number within the correct range");
     element.value = "";
   }
 }
 
-// Generates random number between min and max
 function generateRandomNumber(min, max) {
-  var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
-  return randNum;
+  var random = Math.floor(Math.random() * (max - min + 1)) + min;
+  return random;
 }
 
-function getWinner(guess1, guess2) {
+function getWinner(guess1, guess2, count) {
   var winner;
   if (guess1 === random && guess2 === random) {
-    // Draw
+    addDraw(count);
   } else if (guess1 === random && guess2 !== random) {
     winner = challengerOneName.value;
-    addCard(winner);
+    addCard(winner, count);
   } else if (guess2 === random && guess1 !== random) {
     winner = challengerTwoName.value;
-    addCard(winner);
+    addCard(winner, count);
   }
 }
 
@@ -129,24 +131,51 @@ function checkGuess(text, guess) {
   }
 }
 
-function addCard(winner) {
-  var clone = cardTemplate.content.cloneNode(true);
-  clone.querySelectorAll("span")[0].innerText = challengerOneName.value;
-  clone.querySelectorAll("span")[1].innerText = challengerTwoName.value;
-  clone.querySelector("h5").innerText = winner;
+function addDraw(count) {
+  var clone = drawTemplate.content.cloneNode(true);
+  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
+  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
+  clone.querySelector(".winner").innerText = "Draw";
+  clone.querySelector(".count").innerText = count;
   cardArea.appendChild(clone);
 }
 
-function checkEmpty() {
-  for(var i = 0; i < inputs.length; i++) {
+function addCard(winner, count) {
+  var clone = cardTemplate.content.cloneNode(true);
+  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
+  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
+  clone.querySelector(".winner").innerText = winner;
+  clone.querySelector(".count").innerText = count;
+  cardArea.appendChild(clone);
+}
+
+function validateRange(min, max) {
+  var valid = false;
+  if(min >= max) {
+    minRangeQuery.value = "";
+    errors[0].classList.remove('hidden');
+    minRangeQuery.classList.add('empty');
+  } else {
+    errors[0].classList.add('hidden');
+    minRangeQuery.classList.remove('empty');
+    valid = true;
+  }
+  return valid;
+}
+
+function checkEmpty(start, end) {
+  var empty = false;
+  for(var i = start; i < end + 1; i++) {
     if(inputs[i].value == "") {
       inputs[i].classList.add("empty");
       errors[i].classList.remove("hidden");
+      empty = true;
     } else {
       inputs[i].classList.remove("empty");
       errors[i].classList.add("hidden");
     }
   }
+  return empty;
 }
 
 function startGame() {
