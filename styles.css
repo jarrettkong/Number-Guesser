@@ -6,10 +6,10 @@
 
 html,
 body {
-  max-width: 1300px;
+  width: 100vw;
   margin: auto;
   font-family: 'Open Sans';
-  border: 1px solid #7f7f7f;
+  /* border: 1px solid #7f7f7f; */
 }
 
 header {
@@ -59,10 +59,15 @@ h1 span {
 
 .changing-this {
   background-color: #d1d2d4;
+  max-width: 1300px;
+  margin: auto;
+  border: 2px solid grey;
+  border-top: 0;
+
 }
 
 main {
-  border-right: 2px solid grey;
+  border-right: 3px solid grey;
   width: 50%;
   height: 100%;
   display: inline-block;
