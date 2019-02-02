@@ -23,6 +23,8 @@ var cardTemplate = document.getElementById("game-card-template");
 var minRange;
 var maxRange;
 var random;
+var count = 0;
+var timer;
 
 // Event Listeners
 
@@ -53,13 +55,14 @@ submitButton.addEventListener('click', function(e) {
   validateInput(challengerOneGuess, challengerOneGuessQuery);
   validateInput(challengerTwoGuess, challengerTwoGuessQuery);
   if(!checkEmpty()) {
+    count += 2;
     names[0].innerText = challengerOneName.value;
     names[1].innerText = challengerTwoName.value;
     scores[0].innerText = challengerOneGuess;
     scores[1].innerText = challengerTwoGuess;
     checkGuess(text[0], challengerOneGuess);
     checkGuess(text[1], challengerTwoGuess);
-    getWinner(challengerOneGuess, challengerTwoGuess);
+    getWinner(challengerOneGuess, challengerTwoGuess, count);
   }
 });
 
@@ -94,26 +97,26 @@ function validateInput(num, element) {
   var minRange = parseInt(minRangeQuery.value);
   var maxRange = parseInt(maxRangeQuery.value);
   if(num < minRange || num > maxRange) {
-    alert("Please enter a number within the correct range");
+    // alert("Please enter a number within the correct range");
     element.value = "";
   }
 }
 
 function generateRandomNumber(min, max) {
-  var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
-  return randNum;
+  var random = Math.floor(Math.random() * (max - min + 1)) + min;
+  return random;
 }
 
-function getWinner(guess1, guess2) {
+function getWinner(guess1, guess2, count) {
   var winner;
   if (guess1 === random && guess2 === random) {
     // Draw
   } else if (guess1 === random && guess2 !== random) {
     winner = challengerOneName.value;
-    addCard(winner);
+    addCard(winner, count);
   } else if (guess2 === random && guess1 !== random) {
     winner = challengerTwoName.value;
-    addCard(winner);
+    addCard(winner, count);
   }
 }
 
@@ -127,11 +130,12 @@ function checkGuess(text, guess) {
   }
 }
 
-function addCard(winner) {
+function addCard(winner, count) {
   var clone = cardTemplate.content.cloneNode(true);
   clone.getElementById("game-card-c1").innerText = challengerOneName.value;
   clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
   clone.querySelector(".winner").innerText = winner;
+  clone.querySelector(".count").innerText = count;
   cardArea.appendChild(clone);
 }
 
