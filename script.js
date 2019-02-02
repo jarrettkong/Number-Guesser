@@ -37,34 +37,35 @@ updateButton.addEventListener("click", function(e) {
   e.preventDefault();
   minRange = parseInt(minRangeQuery.value);
   maxRange = parseInt(maxRangeQuery.value);
-  if (minRange >= maxRange) {
-    minRangeQuery.value = "";
-    maxRangeQuery.value = "";
-   } else {
-      minRangeSmall.innerText = minRange;
-      maxRangeSmall.innerText = maxRange;
-   }
-   random = generateRandomNumber(minRange, maxRange);
-   console.log(random);
-  });
+  if(!checkEmpty(0,1)) {
+    minRangeSmall.innerText = minRange;
+    maxRangeSmall.innerText = maxRange;
+    random = generateRandomNumber(minRange, maxRange);
+    console.log(random);
+  }
+});
 
 submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
   var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
-  validateInput(challengerOneGuess, challengerOneGuessQuery);
-  validateInput(challengerTwoGuess, challengerTwoGuessQuery);
-  if(!checkEmpty()) {
+    validateInput(challengerOneGuess, challengerOneGuessQuery);
+    validateInput(challengerTwoGuess, challengerTwoGuessQuery);
+  if(!checkEmpty(2,5)) {
     count += 2;
-    names[0].innerText = challengerOneName.value;
-    names[1].innerText = challengerTwoName.value;
-    scores[0].innerText = challengerOneGuess;
-    scores[1].innerText = challengerTwoGuess;
-    checkGuess(text[0], challengerOneGuess);
-    checkGuess(text[1], challengerTwoGuess);
+    updateResults(challengerOneGuess, challengerTwoGuess);
     getWinner(challengerOneGuess, challengerTwoGuess, count);
   }
 });
+
+function updateResults(guess1, guess2) {
+  names[0].innerText = challengerOneName.value;
+  names[1].innerText = challengerTwoName.value;
+  scores[0].innerText = guess1;
+  scores[1].innerText = guess2;
+  checkGuess(text[0], guess1);
+  checkGuess(text[1], guess2);
+}
 
 resetButton.addEventListener("click", function(e) {
   e.preventDefault();
@@ -139,9 +140,16 @@ function addCard(winner, count) {
   cardArea.appendChild(clone);
 }
 
-function checkEmpty() {
+function validateRange(min, max) {
+  if(min > max) {
+    minRangeQuery.value = "";
+    maxRangeQuery.value = "";
+  }
+}
+
+function checkEmpty(start, end) {
   var empty = false;
-  for(var i = 0; i < inputs.length; i++) {
+  for(var i = start; i < end + 1; i++) {
     if(inputs[i].value == "") {
       inputs[i].classList.add("empty");
       errors[i].classList.remove("hidden");
