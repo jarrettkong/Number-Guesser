@@ -97,13 +97,35 @@
     <div id="card-area">
     </div>
   </section>
-  <!-- Template -->
+  <!-- Winner Template -->
   <template id="game-card-template">
     <section class="game-card">
       <p><span id="game-card-c1"></span> vs <span id="game-card-c2"></span></p>
       <hr>
       <p class="winner"></p>
       <h6>Winner</h6>
+      <hr>
+      <div class="game-stat-container">
+        <div class="game-stats stats-guess">
+          <p><span class="count">32</span> Guesses</p>
+        </div>
+        <div class="game-stats stats-timer">
+          <p><span class="time">10</span> Seconds</p>
+        </div>
+        <div class="close-card-container">
+          <div class="close-card">
+            &times;
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+  <!-- Draw Template -->
+  <template id="draw-template">
+    <section class="template-card game-card">
+      <p><span id="game-card-c1"></span> vs <span id="game-card-c2"></span></p>
+      <hr>
+      <p class="winner"></p>
       <hr>
       <div class="game-stat-container">
         <div class="game-stats stats-guess">

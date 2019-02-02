@@ -193,7 +193,7 @@ button {
   color: white;
   background-color: #6e6e6e;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
   border-style: none;
 }
@@ -348,6 +348,16 @@ h4 {
 
 .game-stats p {
   margin: 0px;
+}
+
+.template-card .winner {
+  font-size: 70px;
+  padding: 30px 0 30px 0;
+  /* visibility: hidden; */
+}
+
+.template-card hr:nth-child(even) {
+  margin-bottom: 8px;
 }
 
 .error {

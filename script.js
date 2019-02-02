@@ -19,6 +19,7 @@ var scores = document.getElementsByClassName('challenger-result');
 var text = document.getElementsByClassName('comparison');
 var cardArea = document.getElementById("card-area");
 var cardTemplate = document.getElementById("game-card-template");
+var drawTemplate = document.getElementById("draw-template");
 
 var minRange;
 var maxRange;
@@ -110,7 +111,7 @@ function generateRandomNumber(min, max) {
 function getWinner(guess1, guess2, count) {
   var winner;
   if (guess1 === random && guess2 === random) {
-    // Draw
+    addDraw(count);
   } else if (guess1 === random && guess2 !== random) {
     winner = challengerOneName.value;
     addCard(winner, count);
@@ -128,6 +129,15 @@ function checkGuess(text, guess) {
   } else {
     text.innerText = "BOOM!";
   }
+}
+
+function addDraw(count) {
+  var clone = drawTemplate.content.cloneNode(true);
+  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
+  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
+  clone.querySelector(".winner").innerText = "Draw";
+  clone.querySelector(".count").innerText = count;
+  cardArea.appendChild(clone);
 }
 
 function addCard(winner, count) {
