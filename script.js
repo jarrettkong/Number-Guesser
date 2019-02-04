@@ -169,10 +169,13 @@ function addCard(winner, count) {
   cardArea.appendChild(clone);
 }
 
-function removeCard(e) {
-  var deleteCard = document.getElementById("game-card");
-  deleteCard.parentNode.removeChild(deleteCard);
-}
+cardArea.addEventListener('click', function(event) {
+  if (event.target.className === 'close-card') {
+    event.target.parentNode.parentNode.parentNode.remove()
+  }
+});
+
+
 
 function validateRange(min, max) {
   var valid = false;
