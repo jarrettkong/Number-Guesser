@@ -169,6 +169,14 @@ function addCard(winner, count) {
   cardArea.appendChild(clone);
 }
 
+cardArea.addEventListener('click', function(event) {
+  if (event.target.className === 'close-card') {
+    event.target.parentNode.parentNode.parentNode.remove()
+  }
+});
+
+
+
 function validateRange(min, max) {
   var valid = false;
   if(min >= max) {
