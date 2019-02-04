@@ -169,6 +169,11 @@ function addCard(winner, count) {
   cardArea.appendChild(clone);
 }
 
+function removeCard(e) {
+  var deleteCard = document.getElementById("game-card");
+  deleteCard.parentNode.removeChild(deleteCard);
+}
+
 function validateRange(min, max) {
   var valid = false;
   if(min >= max) {
