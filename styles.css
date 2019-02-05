@@ -207,12 +207,12 @@ button:focus {
   height: 250px;
 }
 
-.range-group {
+.results-group {
   text-align: center;
   width: 50%;
 }
 
-.range-group p {
+.results-group p {
   color: #7f7f7f;
   font-size: 20px;
   margin: 0;
@@ -420,7 +420,7 @@ h4 {
 
   .lines {
     border-bottom: 1px solid #ffffff;
-    height: 15px;
+    height: 10px;
     text-align: center;
     width: 410px;
   }
@@ -451,12 +451,13 @@ h4 {
   }
 
   #range, #results {
-    margin-top: 0;
+    margin: 0;
     height: auto;
   }
 
   #update-button {
-    float: left;
+    margin: 10px 0 5px 0;
+    width: 30%;
   }
 
   .form-align {
@@ -467,8 +468,6 @@ h4 {
   .vertical-line {
     background-color: #d0d2d3;
     border-style: none;
-    /* bottom: -15px; */
-    /* display: inline; */
     height: 2px;
     position: relative;
     top: 0;
@@ -480,7 +479,7 @@ h4 {
   main {
     display: block;
     width: 100%;
-    padding-top: 20px;
+    padding: 20px;
   }
 
   #card-area {
