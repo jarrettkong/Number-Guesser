@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- Mobile Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Nomralize CSS -->
   <link rel="stylesheet" type="text/css" href="normalize.css">
   <!-- Main CSS File -->
@@ -19,8 +18,8 @@
       <span id="tagline">Ultimate Challenger Edition</span>
     </div>
   </header>
-  <section class="changing-this"> <!-- Temp class -->
-    <main>
+  <main>
+    <section id="main-content">
       <section id="range" class="box">
       <h3>Set Range</h3>
       <div class="wrapper">
@@ -44,7 +43,7 @@
           <div class="wrapper">
             <div class="arena-group">
               <label for="challenger-1-name" class="form-align">Name</label>
-              <input type="text" id="challenger-1-name" class="form-align" name="challenger-1-name">
+              <input type="text" id="challenger-1-name" class="form-align" name="challenger-1-name" maxlength="20">
               <p class="error hidden"><img src="images/error.svg"> Enter a name</p>
             </div>
             <div class="arena-group">
@@ -59,7 +58,7 @@
           <div class="wrapper">
             <div class="arena-group">
               <label for="challenger-2-name" class="form-align">Name</label>
-              <input type="text" id="challenger-2-name" class="form-align" name="challenger-2-name">
+              <input type="text" id="challenger-2-name" class="form-align" name="challenger-2-name" maxlength="20">
               <p class="error hidden"><img src="images/error.svg"> Enter a name</p>
             </div>
             <div class="arena-group">
@@ -93,10 +92,10 @@
           </div>
         </div>
       </section>
-    </main>
+    </section>
     <div id="card-area">
     </div>
-  </section>
+  </main>
   <!-- Winner Template -->
   <template id="game-card-template">
     <section class="game-card">
@@ -122,7 +121,7 @@
   </template>
   <!-- Draw Template -->
   <template id="draw-template">
-    <section class="template-card game-card">
+    <section class="draw-card game-card">
       <p><span id="game-card-c1"></span> vs <span id="game-card-c2"></span></p>
       <hr>
       <p class="winner"></p>

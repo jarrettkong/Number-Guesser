@@ -21,44 +21,18 @@ var cardArea = document.getElementById("card-area");
 var cardTemplate = document.getElementById("game-card-template");
 var drawTemplate = document.getElementById("draw-template");
 
+// Global variables
+
 var minRange;
 var maxRange;
 var random;
 var count = 0;
-var timer;
 
 // Event Listeners
-
-cardArea.addEventListener('click', function(event) {
-  if (event.target.className === 'close-card') {
-    event.target.parentNode.parentNode.parentNode.remove()
-  }
-});
 
 clearButton.addEventListener("click", function(e) {
   e.preventDefault();
   clear();
-});
-
-resetButton.addEventListener("click", function(e) {
-  e.preventDefault();
-  for(var i = 0; i < inputs.length; i++) {
-    inputs[i].value = "";
-  }
-  reset();
-});
-
-submitButton.addEventListener('click', function(e) {
-  e.preventDefault();
-  var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
-  var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
-    validateGuess(challengerOneGuess, challengerOneGuessQuery);
-    validateGuess(challengerTwoGuess, challengerTwoGuessQuery);
-  if(!checkEmpty(2,5)) {
-    count += 2;
-    updateResults(challengerOneGuess, challengerTwoGuess);
-    getWinner(challengerOneGuess, challengerTwoGuess, count);
-  }
 });
 
 updateButton.addEventListener("click", function(e) {
@@ -73,59 +47,47 @@ updateButton.addEventListener("click", function(e) {
   }
 });
 
+submitButton.addEventListener('click', function(e) {
+  e.preventDefault();
+  var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
+  var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
+  validateGuess(challengerOneGuess, challengerOneGuessQuery);
+  validateGuess(challengerTwoGuess, challengerTwoGuessQuery);
+  if(!checkEmpty(2,5)) {
+    count += 2;
+    updateResults(challengerOneGuess, challengerTwoGuess);
+    getWinner(challengerOneGuess, challengerTwoGuess, count);
+  }
+});
+
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener('keyup', disableButtons);
 }
 
-// Functions
-
-function addCard(winner, count) {
-  var clone = cardTemplate.content.cloneNode(true);
-  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
-  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
-  clone.querySelector(".winner").innerText = winner;
-  clone.querySelector(".count").innerText = count;
-  cardArea.appendChild(clone);
+function updateResults(guess1, guess2) {
+  names[0].innerText = challengerOneName.value;
+  names[1].innerText = challengerTwoName.value;
+  scores[0].innerText = guess1;
+  scores[1].innerText = guess2;
+  checkGuess(text[0], guess1);
+  checkGuess(text[1], guess2);
 }
 
-function addDraw(count) {
-  var clone = drawTemplate.content.cloneNode(true);
-  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
-  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
-  clone.querySelector(".winner").innerText = "Draw";
-  clone.querySelector(".count").innerText = count;
-  cardArea.appendChild(clone);
-}
-
-function changeRange(e) {
-  minRange -= 10;
-  maxRange += 10;
-}
-
-function checkEmpty(start, end) {
-  var empty = false;
-  for(var i = start; i < end + 1; i++) {
-    if(inputs[i].value == "") {
-      inputs[i].classList.add("empty");
-      errors[i].classList.remove("hidden");
-      empty = true;
-    } else {
-      inputs[i].classList.remove("empty");
-      errors[i].classList.add("hidden");
-    }
+resetButton.addEventListener("click", function(e) {
+  e.preventDefault();
+  for(var i = 0; i < inputs.length; i++) {
+    inputs[i].value = "";
   }
-  return empty;
-}
+  minRangeQuery.value = 1;
+  maxRangeQuery.value = 100;
+  reset();
+});
 
-function checkGuess(text, guess) {
-  if(guess < random) {
-    text.innerText = "too low";
-  } else if (guess > random) {
-    text.innerText = "too high";
-  } else {
-    text.innerText = "BOOM!";
+cardArea.addEventListener('click', function(event) {
+  if (event.target.className === 'close-card') {
+    event.target.parentNode.parentNode.parentNode.remove()
   }
-}
+});
 
 function clear() {
   inputs[0] = minRange;
@@ -135,20 +97,38 @@ function clear() {
   }
 }
 
-function disableButtons(e) {
-    if (minRangeQuery.value !== ''
-      || maxRangeQuery.value !== ''
-      || challengerOneName.value !== ''
-      || challengerOneGuessQuery.value !== ''
-      || challengerTwoName.value !== ''
-      || challengerTwoGuessQuery.value !== '')
-    {
-      resetButton.disabled = false;
-      clearButton.disabled = false;
-    } else {
-      resetButton.disabled = true;
-      clearButton.disabled = true;
-    }
+function reset() {
+  cardArea.innerHTML = "";
+  minRange = 1;
+  maxRange = 100;
+  newGame();
+  resetResults();
+  disableButtons();
+}
+
+function newGame() {
+  for(i = 2; i < inputs.length; i++) {
+    inputs[i].value = "";
+  }
+  minRangeQuery.placeholder = minRange;
+  maxRangeQuery.placeholder = maxRange;
+  minRangeSmall.innerText = minRange;
+  maxRangeSmall.innerText = maxRange;
+  random = generateRandomNumber(minRange, maxRange);
+}
+
+function resetResults() {
+  for(var i = 0; i < 2; i++) {
+    names[i].innerText = "-";
+    scores[i].innerText = "--";
+    text[i].innerText = "-";
+  }
+}
+
+function validateGuess(num, element) {
+  if(num < minRange || num > maxRange) {
+    element.value = "";
+  }
 }
 
 function generateRandomNumber(min, max) {
@@ -174,44 +154,32 @@ function getWinner(guess1, guess2, count) {
   }
 }
 
-function newGame() {
-  for(i = 2; i < inputs.length; i++) {
-    inputs[i].value = "";
-  }
-  minRangeSmall.innerText = minRange;
-  maxRangeSmall.innerText = maxRange;
-  random = generateRandomNumber(minRange, maxRange);
-}
-
-function reset() {
-  cardArea.innerHTML = "";
-  minRange = 1;
-  maxRange = 100;
-  newGame();
-  resetResults();
-  disableButtons();
-}
-
-function resetResults() {
-  for(var i = 0; i < 2; i++) {
-    names[i].innerText = "-";
-    scores[i].innerText = "--";
-    text[i].innerText = "-";
+function checkGuess(text, guess) {
+  if(guess < random) {
+    text.innerText = "too low";
+  } else if (guess > random) {
+    text.innerText = "too high";
+  } else {
+    text.innerText = "BOOM!";
   }
 }
 
-function startGame() {
-  minRange = 1;
-  maxRange = 100;
-  newGame();
+function addDraw(count) {
+  var clone = drawTemplate.content.cloneNode(true);
+  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
+  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
+  clone.querySelector(".winner").innerText = "Draw";
+  clone.querySelector(".count").innerText = count;
+  cardArea.appendChild(clone);
 }
 
-function validateGuess(num, element) {
-  var minRange = parseInt(minRangeQuery.value);
-  var maxRange = parseInt(maxRangeQuery.value);
-  if(num < minRange || num > maxRange) {
-    element.value = "";
-  }
+function addCard(winner, count) {
+  var clone = cardTemplate.content.cloneNode(true);
+  clone.getElementById("game-card-c1").innerText = challengerOneName.value;
+  clone.getElementById("game-card-c2").innerText = challengerTwoName.value;
+  clone.querySelector(".winner").innerText = winner;
+  clone.querySelector(".count").innerText = count;
+  cardArea.appendChild(clone);
 }
 
 function validateRange(min, max) {
@@ -228,13 +196,46 @@ function validateRange(min, max) {
   return valid;
 }
 
-function updateResults(guess1, guess2) {
-  names[0].innerText = challengerOneName.value;
-  names[1].innerText = challengerTwoName.value;
-  scores[0].innerText = guess1;
-  scores[1].innerText = guess2;
-  checkGuess(text[0], guess1);
-  checkGuess(text[1], guess2);
+function checkEmpty(start, end) {
+  var empty = false;
+  for(var i = start; i < end + 1; i++) {
+    if(inputs[i].value == "") {
+      inputs[i].classList.add("empty");
+      errors[i].classList.remove("hidden");
+      empty = true;
+    } else {
+      inputs[i].classList.remove("empty");
+      errors[i].classList.add("hidden");
+    }
+  }
+  return empty;
+}
+
+function startGame() {
+  minRange = 1;
+  maxRange = 100;
+  newGame();
 }
 
 startGame();
+
+function disableButtons(e) {
+    if (minRangeQuery.value !== ''
+      || maxRangeQuery.value !== ''
+      || challengerOneName.value !== ''
+      || challengerOneGuessQuery.value !== ''
+      || challengerTwoName.value !== ''
+      || challengerTwoGuessQuery.value !== '')
+    {
+      resetButton.disabled = false;
+      clearButton.disabled = false;
+    } else {
+      resetButton.disabled = true;
+      clearButton.disabled = true;
+    }
+}
+
+function changeRange(e) {
+  minRange -= 10;
+  maxRange += 10;
+}

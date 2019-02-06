@@ -9,9 +9,9 @@ body {
   font-family: 'Open Sans';
   margin: auto;
   width: 100%;
-  /* border: 1px solid #7f7f7f; */
 }
 
+/* Header element w/o container */
 header {
   align-items: center;
   background-color: #404041;
@@ -23,6 +23,7 @@ header {
   margin-top: -10px;
 }
 
+/* Large pink text */
 h1,
 .challenger-result {
   color: #dd1972;
@@ -32,14 +33,12 @@ h1,
   text-transform: uppercase;
 }
 
-.challenger-result {
-  padding: 15px 0;
-}
-
+/* Contrasting font weight in title */
 h1 span {
   font-weight: 300;
 }
 
+/* Ultimate challenger edition */
 #tagline {
   background-color: #404041;
   color: white;
@@ -49,6 +48,7 @@ h1 span {
   text-transform: uppercase;
 }
 
+/* Horizontal lines on either side of the tagline */
 .lines {
   border-bottom: 1px solid #ffffff;
   height: 15px;
@@ -56,8 +56,8 @@ h1 span {
   width: 560px;
 }
 
-
-.changing-this {
+/* Container for both columns */
+main {
   background-color: #d1d2d4;
   border: 2px solid grey;
   border-top: 0;
@@ -66,7 +66,8 @@ h1 span {
 
 }
 
-main {
+/* Left column with inputs and results */
+#main-content {
   background-color: #f7f7f7;
   border-right: 3px solid grey;
   display: inline-block;
@@ -75,6 +76,7 @@ main {
   width: 50%;
 }
 
+/* Shared style for each section */
 .box {
   background-color: white;
   border: 2px solid #d0d2d3;
@@ -82,6 +84,7 @@ main {
   width: 100%;
 }
 
+/* Shared style for all input */
 input {
   border: 2px solid #d0d2d3;
   color: #7f7f7f;
@@ -91,25 +94,35 @@ input {
   padding-left: 10px;
 }
 
+/* Pink highlight on input focus */
 input:focus {
   border: 2px solid #dd1972;
   outline: none;
 }
 
+/* Placeholder style for range inputs */
+input::placeholder {
+  color: lightgrey;
+}
+
+/* Range section */
 #range {
   height: 145px;
 }
 
+/* Shared style for input labels */
 label {
   color: #7f7f7f;
   font-size: 20px;
   margin-bottom: 3px;
 }
 
+/* Disabled button color */
 button:disabled {
   background-color: #d0d2d3;
 }
 
+/* Shared style for input wrappers */
 .wrapper {
   align-items: flex-end;
   display: flex;
@@ -118,56 +131,75 @@ button:disabled {
   position: relative;
 }
 
+/* Shared style for individual inputs elements */
 .form-align {
   display: block;
   width: 100%;
 }
 
+/* Container for label/input/error groups in Range section */
 .range-group {
   flex: 3;
   margin-right: 15px;
   position: relative;
 }
 
+/* Container for label/input/error groups in Arena section */
 .arena-group {
   position: relative;
 }
 
+/* Update button */
 #update-button {
   flex: 2;
 }
 
+/* Arena section */
 #arena {
   height: 400px;
 }
 
+/* Current range text */
 #arena p:first-child {
   color: #404041;
   font-size: 18px;
   margin: 15px 15px 25px 15px;
 }
 
+/* Range values in current range text */
+#min-range-small,
+#max-range-small {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Shared style for name inputs */
 .arena-group:nth-child(1) {
   flex: 2;
   margin-right: 15px;
 }
 
+/* Shared style for guess inputs */
 .arena-group:nth-child(2) {
   flex: 1;
 }
 
+/* Container for challenger name/guess pairs */
 .challenger {
   margin-bottom: 30px;
 }
 
+/* Shared style for submit/reset/clear buttons */
 .btn {
   flex: 1;
 }
 
+/* Center button margins */
 .btn:nth-child(2) {
   margin: 0 10px;
 }
 
+/* Challenger name in results section */
 h3 {
   color: #404041;
   font-size: 23px;
@@ -176,16 +208,12 @@ h3 {
   padding: 0;
 }
 
-#min-range-small,
-#max-range-small {
-  font-weight: bold;
-  text-decoration: underline;
-}
-
+/* Container for submit/reset/clear buttons */
 #button-container {
   padding-top: 5px;
 }
 
+/* Shared style for all buttons */
 button {
   background-color: #6e6e6e;
   border-radius: 100px;
@@ -193,54 +221,61 @@ button {
   color: white;
   font-size: 18px;
   font-weight: 700;
-  /* padding: 0 25px; */
   height: 40px;
   text-transform: uppercase;
 }
 
+/* No highlight on click */
 button:focus {
   outline: none;
 }
 
-
+/* Results section */
 #results {
   height: 250px;
 }
 
+/* Container for individual challenger results */
 .results-group {
   text-align: center;
   width: 50%;
 }
 
+/* "current guess" in results section */
 .results-group p {
   color: #7f7f7f;
   font-size: 20px;
   margin: 0;
 }
 
+/* Additional styling for challenger guesses not shared with h1 */
 #challenger-1-result,
 #challenger-2-result {
   color: #dd1972;
   font-size: 100px;
   margin: -20px 0;
+  padding: 15px 0;
 }
 
+/* Challenger name in results section */
 h4 {
   color: #404041;
   font-size: 20px;
   margin: 0 0 5px 0;
 }
 
+/* Challenger results divider */
 .vertical-line {
   background-color: #d0d2d3;
   border-style: none;
-  bottom: -20px;
+  bottom: -15px;
   display: inline;
   height: 220px;
   position: absolute;
   width: 2px;
 }
 
+/* Right column */
 #card-area {
   display: inline-block;
   float: right;
@@ -252,6 +287,7 @@ h4 {
   width: 50%;
 }
 
+/* Dividers in game cards */
 .game-card hr {
   background-color: lightgrey;
   border-style: none;
@@ -259,14 +295,17 @@ h4 {
   width: 95%;
 }
 
+/* Top line */
 .game-card hr:nth-child(even) {
   margin-bottom: 25px;
 }
 
+/* Bottom line */
 .game-card hr:nth-child(odd) {
   margin-top: 25px;
 }
 
+/* General card styles */
 .game-card {
   background-color: #ffffff;
   border: 2px solid lightgrey;
@@ -277,16 +316,19 @@ h4 {
   text-align: center;
 }
 
+/* VS text on card */
 .game-card p {
   margin: 15px 0;
 }
 
+/* Challenger names on card */
 .game-card span {
   color: #6e6e6e;
   font-size: 18px;
   font-weight: bold;
 }
 
+/* Winning player name text or "Draw"*/
 .winner {
   color: #6e6e6e;
   font-size:42px;
@@ -296,6 +338,7 @@ h4 {
   text-transform: uppercase;
 }
 
+/* "Winner" on game card */
 .game-card h6 {
   font-size: 32px;
   font-weight: lighter;
@@ -304,6 +347,8 @@ h4 {
   margin: 0px;
   text-transform: uppercase;
 }
+
+/* Wrapper for game stats */
 .game-stat-container {
   align-items: center;
   display: flex;
@@ -312,20 +357,24 @@ h4 {
   text-transform: uppercase;
 }
 
+/* Shared style for individual stats */
 .game-stats {
   margin: 5px;
   width: 33.33%;
 }
 
+/* Number of guesses */
 .stats-guess {
   padding-left: 10px;
   text-align: left;
 }
 
+/* Timer */
 .stats-timer {
   text-align: center;
 }
 
+/* Close button */
 .close-card-container {
   align-items: center;
   display: flex;
@@ -335,7 +384,7 @@ h4 {
   width: 33%;
 }
 
-
+/* Close button styles */
 .close-card {
   background-color: #7f7f7f;
   border-radius: 100%;
@@ -350,33 +399,39 @@ h4 {
   margin: 0px;
 }
 
-.template-card .winner {
+/* Additional styles for draw card */
+.draw-card .winner {
   font-size: 70px;
   padding: 30px 0 30px 0;
-  /* visibility: hidden; */
 }
 
-.template-card hr:nth-child(even) {
+.draw-card hr:nth-child(even) {
   margin-bottom: 8px;
 }
 
+/* Input error messages */
 .error {
   color: #dd1972;
   margin: 3px 0 0 0;
   position: absolute;
 }
 
+/* Error message .svg */
 .error img {
   height: 13px;
 }
 
+/* Hide error message class */
 .hidden {
   visibility: hidden;
 }
 
+/* Toggle pink border for empty input */
 .empty {
   border: 2px solid #dd1972;
 }
+
+/* Media queries */
 
 @media only screen and (max-width: 1100px) {
 
@@ -464,7 +519,7 @@ h4 {
     font-size: 1em;
   }
 
-  .changing-this {
+  main {
     display: flex;
     flex-direction: column;
   }
@@ -474,7 +529,7 @@ h4 {
     width: 30%;
   }
 
-  main {
+  #main-content {
     border: 0;
     display: block;
     padding: 20px;
