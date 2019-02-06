@@ -21,11 +21,12 @@ var cardArea = document.getElementById("card-area");
 var cardTemplate = document.getElementById("game-card-template");
 var drawTemplate = document.getElementById("draw-template");
 
+// Global variables
+
 var minRange;
 var maxRange;
 var random;
 var count = 0;
-var timer;
 
 // Event Listeners
 
@@ -50,8 +51,8 @@ submitButton.addEventListener('click', function(e) {
   e.preventDefault();
   var challengerOneGuess = parseInt(challengerOneGuessQuery.value);
   var challengerTwoGuess = parseInt(challengerTwoGuessQuery.value);
-    validateGuess(challengerOneGuess, challengerOneGuessQuery);
-    validateGuess(challengerTwoGuess, challengerTwoGuessQuery);
+  validateGuess(challengerOneGuess, challengerOneGuessQuery);
+  validateGuess(challengerTwoGuess, challengerTwoGuessQuery);
   if(!checkEmpty(2,5)) {
     count += 2;
     updateResults(challengerOneGuess, challengerTwoGuess);
@@ -77,8 +78,8 @@ resetButton.addEventListener("click", function(e) {
   for(var i = 0; i < inputs.length; i++) {
     inputs[i].value = "";
   }
-  // minRangeQuery.value = 1;
-  // maxRangeQuery.value = 100;
+  minRangeQuery.value = 1;
+  maxRangeQuery.value = 100;
   reset();
 });
 
@@ -109,6 +110,8 @@ function newGame() {
   for(i = 2; i < inputs.length; i++) {
     inputs[i].value = "";
   }
+  minRangeQuery.placeholder = minRange;
+  maxRangeQuery.placeholder = maxRange;
   minRangeSmall.innerText = minRange;
   maxRangeSmall.innerText = maxRange;
   random = generateRandomNumber(minRange, maxRange);
@@ -123,8 +126,6 @@ function resetResults() {
 }
 
 function validateGuess(num, element) {
-  var minRange = parseInt(minRangeQuery.value);
-  var maxRange = parseInt(maxRangeQuery.value);
   if(num < minRange || num > maxRange) {
     element.value = "";
   }
