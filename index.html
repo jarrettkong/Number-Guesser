@@ -26,12 +26,12 @@
       <div class="wrapper">
         <div class="range-group">
           <label for="min-range" class="form-align">Min Range</label>
-          <input type="number" name="min-range" value="1" id="min-range" class="form-align">
+          <input type="number" name="min-range" id="min-range" class="form-align" placeholder="1">
           <p class="error hidden"><img src="images/error.svg"> Enter a minimum</p>
         </div>
         <div class="range-group">
           <label for="max-range" class="form-align">Max Range</label>
-          <input type="number" name="max-range" value="100" id="max-range" class="form-align">
+          <input type="number" name="max-range" id="max-range" class="form-align" placeholder="100">
           <p class="error hidden"><img src="images/error.svg"> Enter a maximum</p>
         </div>
           <button id="update-button">Update</button>
@@ -71,8 +71,8 @@
         </article>
         <div class="wrapper" id="button-container">
           <button id="submit-guess"class="btn">Submit Guess</button>
-          <button id="reset-game" class="btn">Reset Game</button>
-          <button id="clear-game" class="btn">Clear Game</button>
+          <button id="reset-game" class="btn" disabled>Reset Game</button>
+          <button id="clear-game" class="btn" disabled>Clear Game</button>
         </div>
       </section>
       <section id="results" class="box">

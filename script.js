@@ -59,6 +59,10 @@ submitButton.addEventListener('click', function(e) {
   }
 });
 
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('keyup', disableButtons);
+}
+
 function updateResults(guess1, guess2) {
   names[0].innerText = challengerOneName.value;
   names[1].innerText = challengerTwoName.value;
@@ -73,8 +77,8 @@ resetButton.addEventListener("click", function(e) {
   for(var i = 0; i < inputs.length; i++) {
     inputs[i].value = "";
   }
-  minRangeQuery.value = 1;
-  maxRangeQuery.value = 100;
+  // minRangeQuery.value = 1;
+  // maxRangeQuery.value = 100;
   reset();
 });
 
@@ -88,17 +92,17 @@ function clear() {
 
 function reset() {
   cardArea.innerHTML = "";
+  minRange = 1;
+  maxRange = 100;
   newGame();
   resetResults();
-  random = generateRandomNumber(minRange, maxRange);
+  disableButtons();
 }
 
 function newGame() {
   for(i = 2; i < inputs.length; i++) {
     inputs[i].value = "";
   }
-  minRange = 1;
-  maxRange = 100;
   minRangeSmall.innerText = minRange;
   maxRangeSmall.innerText = maxRange;
   random = generateRandomNumber(minRange, maxRange);
@@ -133,10 +137,12 @@ function getWinner(guess1, guess2, count) {
   } else if (guess1 === random && guess2 !== random) {
     winner = challengerOneName.value;
     addCard(winner, count);
+    changeRange();
     newGame();
   } else if (guess2 === random && guess1 !== random) {
     winner = challengerTwoName.value;
     addCard(winner, count);
+    changeRange();
     newGame();
   }
 }
@@ -207,7 +213,30 @@ function checkEmpty(start, end) {
 }
 
 function startGame() {
+  minRange = 1;
+  maxRange = 100;
   newGame();
 }
 
 startGame();
+
+function disableButtons(e) {
+    if (minRangeQuery.value !== ''
+      || maxRangeQuery.value !== ''
+      || challengerOneName.value !== ''
+      || challengerOneGuessQuery.value !== ''
+      || challengerTwoName.value !== ''
+      || challengerTwoGuessQuery.value !== '')
+    {
+      resetButton.disabled = false;
+      clearButton.disabled = false;
+    } else {
+      resetButton.disabled = true;
+      clearButton.disabled = true;
+    }
+}
+
+function changeRange(e) {
+  minRange -= 10;
+  maxRange += 10;
+}
