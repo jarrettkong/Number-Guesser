@@ -82,6 +82,12 @@ resetButton.addEventListener("click", function(e) {
   reset();
 });
 
+cardArea.addEventListener('click', function(event) {
+  if (event.target.className === 'close-card') {
+    event.target.parentNode.parentNode.parentNode.remove()
+  }
+});
+
 function clear() {
   inputs[0] = minRange;
   inputs[1] = maxRange;
@@ -174,14 +180,6 @@ function addCard(winner, count) {
   clone.querySelector(".count").innerText = count;
   cardArea.appendChild(clone);
 }
-
-cardArea.addEventListener('click', function(event) {
-  if (event.target.className === 'close-card') {
-    event.target.parentNode.parentNode.parentNode.remove()
-  }
-});
-
-
 
 function validateRange(min, max) {
   var valid = false;
