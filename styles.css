@@ -283,7 +283,7 @@ h4 {
   max-height: 855px;
   overflow-y: auto;
   padding: 20px 40px;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   width: 50%;
 }
 
