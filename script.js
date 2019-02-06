@@ -78,8 +78,8 @@ resetButton.addEventListener("click", function(e) {
   for(var i = 0; i < inputs.length; i++) {
     inputs[i].value = "";
   }
-  minRangeQuery.value = 1;
-  maxRangeQuery.value = 100;
+  // minRangeQuery.value = 1;
+  // maxRangeQuery.value = 100;
   reset();
 });
 
@@ -90,17 +90,18 @@ cardArea.addEventListener('click', function(event) {
 });
 
 function clear() {
-  inputs[0] = minRange;
-  inputs[1] = maxRange;
   for(var i = 2; i < inputs.length; i++) {
     inputs[i].value = "";
   }
+  // disableButtons();
 }
 
 function reset() {
   cardArea.innerHTML = "";
   minRange = 1;
   maxRange = 100;
+  minRangeQuery.placeholder = 1;
+  maxRangeQuery.placeholder = 100;
   newGame();
   resetResults();
   disableButtons();
@@ -110,11 +111,12 @@ function newGame() {
   for(i = 2; i < inputs.length; i++) {
     inputs[i].value = "";
   }
-  minRangeQuery.placeholder = minRange;
-  maxRangeQuery.placeholder = maxRange;
+  minRangeQuery.value = "";
+  maxRangeQuery.value = "";
   minRangeSmall.innerText = minRange;
   maxRangeSmall.innerText = maxRange;
   random = generateRandomNumber(minRange, maxRange);
+  disableButtons();
 }
 
 function resetResults() {
@@ -217,10 +219,13 @@ function startGame() {
   newGame();
 }
 
-startGame();
-
 function disableButtons(e) {
-    if (minRangeQuery.value !== ''
+  disableReset();
+  disableClear();
+}
+
+function disableReset(e) {
+  if (minRangeQuery.value !== ''
       || maxRangeQuery.value !== ''
       || challengerOneName.value !== ''
       || challengerOneGuessQuery.value !== ''
@@ -228,9 +233,19 @@ function disableButtons(e) {
       || challengerTwoGuessQuery.value !== '')
     {
       resetButton.disabled = false;
-      clearButton.disabled = false;
     } else {
       resetButton.disabled = true;
+    }
+}
+
+function disableClear(e) {
+  if (challengerOneName.value !== ''
+      || challengerOneGuessQuery.value !== ''
+      || challengerTwoName.value !== ''
+      || challengerTwoGuessQuery.value !== '')
+    {
+      clearButton.disabled = false;
+    } else {
       clearButton.disabled = true;
     }
 }
@@ -238,4 +253,9 @@ function disableButtons(e) {
 function changeRange(e) {
   minRange -= 10;
   maxRange += 10;
+  minRangeQuery.placeholder = minRange;
+  maxRangeQuery.placeholder = maxRange;
 }
+
+startGame();
+
